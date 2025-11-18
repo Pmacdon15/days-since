@@ -21,11 +21,12 @@ export default async function Home() {
 						Days Since Last VS Code Fork
 					</h2>
 
-					<div className="mx-auto flex w-fit items-center justify-center gap-2 rounded-full border border-amber-900/50 bg-amber-950/30 px-4 py-2 font-mono text-amber-500/80 text-sm md:text-base">
-						<AlertTriangle className="h-4 w-4" />
-						<span>It happened again.</span>
-					</div>
-
+					{daysSince && (
+						<div className="mx-auto flex w-fit items-center justify-center gap-2 rounded-full border border-amber-900/50 bg-amber-950/30 px-4 py-2 font-mono text-amber-500/80 text-sm md:text-base">
+							<AlertTriangle className="h-4 w-4" />
+							<span>It happened again.</span>
+						</div>
+					)}
 					{lastForkDate && (
 						<div className="font-mono text-xs text-zinc-600">
 							Last fork: {new Date(lastForkDate).toLocaleString()}
