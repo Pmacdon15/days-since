@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dayssincelastvscodefork.patmac.ca
+
+# Sitemaps
+Sitemap: https://dayssincelastvscodefork.patmac.ca/sitemap.xml
