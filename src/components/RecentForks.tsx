@@ -1,3 +1,4 @@
+'use client'
 import { ChevronLeft, ChevronRight, GitFork } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -5,6 +6,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import type { RecentForksResult } from '@/lib/types/types'
 import { cn } from '@/lib/utils'
+import { use } from 'react'
 
 function getOrdinalLabel(index: number, page: number): string {
 	const labels = [
@@ -18,12 +20,12 @@ function getOrdinalLabel(index: number, page: number): string {
 	return labels[position] || `${position + 1}th Most Recent`
 }
 
-export async function RecentForks({
+export function RecentForks({
 	recentForksPromise,
 }: {
 	recentForksPromise: Promise<RecentForksResult>
 }) {
-	const { forks, hasNextPage, page } = await recentForksPromise
+	const { forks, hasNextPage, page } = use(recentForksPromise)
 
 	if (forks.length === 0) {
 		return null
