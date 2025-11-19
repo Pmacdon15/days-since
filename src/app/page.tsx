@@ -1,4 +1,5 @@
 import { AlertTriangle } from 'lucide-react'
+import { RecentForks } from '@/components/RecentForks'
 import { getForkData } from '@/lib/DAL/fetchDaysSince'
 
 export default async function Home() {
@@ -33,6 +34,10 @@ export default async function Home() {
 						</div>
 					)}
 				</div>
+			</div>
+
+			<div className="fade-in mt-16 animate-in duration-1000 delay-500">
+				<RecentForks />
 			</div>
 		</main>
 	)

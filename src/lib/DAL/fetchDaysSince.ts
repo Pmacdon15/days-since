@@ -10,8 +10,7 @@ export async function getForkData() {
 				headers: {
 					Accept: 'application/vnd.github.v3+json',
 					'User-Agent': 'days-since-vscode-fork',
-				},
-				next: { revalidate: 60 }, // Revalidate every 60 seconds
+				},				
 			},
 		)
 
