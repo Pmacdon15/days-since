@@ -1,7 +1,8 @@
 import { GitFork } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
-import { getRecentForks } from '@/lib/DAL/fetchRecentForks'
+import type { Fork } from '@/lib/types/types'
 
 function getOrdinalLabel(index: number): string {
 	const labels = [
@@ -14,8 +15,12 @@ function getOrdinalLabel(index: number): string {
 	return labels[index] || `${index + 1}th Most Recent`
 }
 
-export async function RecentForks() {
-	const forks = await getRecentForks()
+export async function RecentForks({
+	recentForksPromise,
+}: {
+	recentForksPromise: Promise<Fork[]>
+}) {
+	const forks = await recentForksPromise
 
 	if (forks.length === 0) {
 		return null
@@ -25,14 +30,14 @@ export async function RecentForks() {
 		<div className="z-10 w-full max-w-6xl px-4">
 			<div className="mb-6 flex items-center justify-center gap-2">
 				<GitFork className="h-5 w-5 text-amber-500/80" />
-				<h3 className="font-mono text-lg text-amber-500/80 uppercase tracking-wider">
+				<h3 className="font-mono text-amber-500/80 text-lg uppercase tracking-wider">
 					Recent Forks
 				</h3>
 			</div>
 
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
 				{forks.map((fork, index) => (
-					<a
+					<Link
 						className="group block transition-transform duration-200 hover:scale-105"
 						href={fork.html_url}
 						key={fork.id}
@@ -43,7 +48,7 @@ export async function RecentForks() {
 							<CardContent className="p-4">
 								<div className="flex flex-col items-center gap-3 text-center">
 									<div className="relative">
-										<div className="absolute -inset-1 rounded-full bg-amber-500/20 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+										<div className="-inset-1 absolute rounded-full bg-amber-500/20 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
 										<Image
 											alt={fork.owner.login}
 											className="relative h-12 w-12 rounded-full border-2 border-amber-900/50"
@@ -53,17 +58,22 @@ export async function RecentForks() {
 										/>
 									</div>
 									<div className="w-full">
-										<p className="truncate font-mono text-sm text-amber-100/90">
+										<p className="truncate font-mono text-amber-100/90 text-sm">
 											{fork.owner.login}
 										</p>
-										<p className="mt-1 font-mono text-xs text-amber-500/60">
+										<p className="mt-1 font-mono text-amber-500/60 text-xs">
 											{getOrdinalLabel(index)}
+										</p>
+										<p className="mt-1 font-mono text-amber-500/60 text-xs">
+											{new Date(
+												fork.created_at,
+											).toLocaleDateString()}
 										</p>
 									</div>
 								</div>
 							</CardContent>
 						</Card>
-					</a>
+					</Link>
 				))}
 			</div>
 		</div>

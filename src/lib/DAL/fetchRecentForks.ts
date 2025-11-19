@@ -1,23 +1,16 @@
 import { cacheLife } from 'next/cache'
+import type { Fork } from '../types/types'
 
-export interface Fork {
-	id: number
-	owner: {
-		login: string
-		avatar_url: string
-		html_url: string
-	}
-	html_url: string
-	created_at: string
-	description: string
-}
-
-export async function getRecentForks(): Promise<Fork[]> {
+export async function getRecentForks({
+	page = 1,
+}: {
+	page?: number | undefined
+}): Promise<Fork[]> {
 	'use cache'
 	cacheLife('hours')
 	try {
 		const response = await fetch(
-			'https://api.github.com/repos/microsoft/vscode/forks?sort=newest&per_page=5',
+			`https://api.github.com/repos/microsoft/vscode/forks?sort=newest&per_page=5&page=${page}`,
 			{
 				headers: {
 					Accept: 'application/vnd.github.v3+json',
