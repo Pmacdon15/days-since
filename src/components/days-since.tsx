@@ -3,7 +3,7 @@ import { AlertTriangle } from 'lucide-react'
 import { use } from 'react'
 import type { ForkData } from '@/lib/types/types'
 
-export default async function DaysSinceComponent({
+export default function DaysSinceComponent({
 	forkDataPromise,
 }: {
 	forkDataPromise: Promise<ForkData>
