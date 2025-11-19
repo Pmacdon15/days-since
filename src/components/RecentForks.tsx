@@ -1,10 +1,12 @@
 import { GitFork } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { buttonVariants } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import type { Fork } from '@/lib/types/types'
+import type { RecentForksResult } from '@/lib/types/types'
+import { cn } from '@/lib/utils'
 
-function getOrdinalLabel(index: number): string {
+function getOrdinalLabel(index: number, page: number): string {
 	const labels = [
 		'Most Recent',
 		'2nd Most Recent',
@@ -12,15 +14,18 @@ function getOrdinalLabel(index: number): string {
 		'4th Most Recent',
 		'5th Most Recent',
 	]
-	return labels[index] || `${index + 1}th Most Recent`
+	const position = (page - 1) * 5 + index
+	return labels[position] || `${position + 1}th Most Recent`
 }
 
 export async function RecentForks({
-	recentForksPromise,
+	recentForksPromise,	
 }: {
-	recentForksPromise: Promise<Fork[]>
+	recentForksPromise: Promise<RecentForksResult>
+	
 }) {
-	const forks = await recentForksPromise
+	const { forks, hasNextPage , page} = await recentForksPromise
+	
 
 	if (forks.length === 0) {
 		return null
@@ -62,7 +67,7 @@ export async function RecentForks({
 											{fork.owner.login}
 										</p>
 										<p className="mt-1 font-mono text-amber-500/60 text-xs">
-											{getOrdinalLabel(index)}
+											{getOrdinalLabel(index, page)}
 										</p>
 										<p className="mt-1 font-mono text-amber-500/60 text-xs">
 											{new Date(
@@ -75,6 +80,28 @@ export async function RecentForks({
 						</Card>
 					</Link>
 				))}
+			</div>
+			<div className="mt-8 flex justify-center gap-4">
+				<Link
+					className={cn(
+						buttonVariants({ variant: 'outline' }),
+						page <= 1 &&
+							'pointer-events-none opacity-50',
+					)}
+					href={`/?page=${page - 1}`}
+				>
+					Previous
+				</Link>
+				<Link
+					className={cn(
+						buttonVariants({ variant: 'outline' }),
+						!hasNextPage &&
+							'pointer-events-none opacity-50',
+					)}
+					href={`/?page=${page + 1}`}
+				>
+					Next
+				</Link>
 			</div>
 		</div>
 	)

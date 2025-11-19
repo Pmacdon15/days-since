@@ -14,7 +14,7 @@ export default async function Home(props: PageProps<'/'>) {
 					: (search.page ?? '1'),
 			),
 		}),
-	)
+	)	
 
 	return (
 		<main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden p-4 text-center">

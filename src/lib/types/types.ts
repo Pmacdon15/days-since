@@ -10,7 +10,13 @@ export interface Fork {
 	description: string
 }
 
+export interface RecentForksResult {
+	forks: Fork[]
+	page: number
+	hasNextPage: boolean
+}
+
 export interface ForkData {
-  daysSince: number
-  lastForkDate: string | null
+	daysSince: number
+	lastForkDate: string | null
 }
