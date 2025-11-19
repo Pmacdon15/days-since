@@ -43,7 +43,7 @@ const fetchDaysSince = cache(async () => {
 });
 ```
 
-By using the `cache` function from React, we ensure:
+By using the `use cache` function from React, we ensure:
 - ✅ Data is fetched once at build time
 - ✅ Route can be statically generated
 - ✅ Optimal performance with zero client-side JavaScript for data fetching

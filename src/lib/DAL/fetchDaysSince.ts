@@ -1,5 +1,8 @@
+import { cacheLife } from "next/cache"
+
 export async function getForkData() {
 	'use cache'
+	cacheLife("hours")
 	try {
 		const response = await fetch(
 			'https://api.github.com/repos/microsoft/vscode/forks?sort=newest&per_page=1',
@@ -22,7 +25,7 @@ export async function getForkData() {
 			return { daysSince: 0, lastForkDate: null }
 		}
 
-		const latestFork = forks[0]
+		const latestFork = forks[0]		
 		const forkDate = new Date(latestFork.created_at)
 		const now = new Date()
 		const diffTime = Math.abs(now.getTime() - forkDate.getTime())
