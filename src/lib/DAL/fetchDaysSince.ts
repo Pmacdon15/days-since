@@ -1,6 +1,7 @@
 import { cacheLife } from 'next/cache'
+import type { ForkData } from '../types/types'
 
-export async function getForkData() {
+export async function getForkData(): Promise<ForkData> {
 	'use cache'
 	cacheLife('hours')
 	try {
@@ -11,7 +12,6 @@ export async function getForkData() {
 					Accept: 'application/vnd.github.v3+json',
 					'User-Agent': 'days-since-vscode-fork',
 				},
-				next: { revalidate: 60 }, // Revalidate every 60 seconds
 			},
 		)
 
