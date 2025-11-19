@@ -1,5 +1,6 @@
 'use client'
 import { AlertTriangle } from 'lucide-react'
+import { use } from 'react'
 import type { ForkData } from '@/lib/types/types'
 
 export default async function DaysSinceComponent({
@@ -7,7 +8,7 @@ export default async function DaysSinceComponent({
 }: {
 	forkDataPromise: Promise<ForkData>
 }) {
-	const { daysSince, lastForkDate } = await forkDataPromise
+	const { daysSince, lastForkDate } = use(forkDataPromise)
 	return (
 		<div className="fade-in zoom-in z-10 flex animate-in flex-col items-center gap-8 duration-1000">
 			<div className="relative">
