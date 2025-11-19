@@ -8,7 +8,7 @@ export async function getRecentForks({
 }: {
 	page?: number | undefined
 }): Promise<RecentForksResult> {
-	'use cache'
+	'use cache: private'
 	cacheLife('hours')
 	try {
 		const response = await fetch(

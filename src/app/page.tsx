@@ -4,7 +4,7 @@ import { RecentForks } from '@/components/RecentForks'
 import { getForkData } from '@/lib/DAL/fetchDaysSince'
 import { getRecentForks } from '@/lib/DAL/fetchRecentForks'
 
-export default async function Home(props: PageProps<'/'>) {
+export default async  function Home(props: PageProps<'/'>) {
 	const forkDataPromise = getForkData()
 	const recentForksPromise = props.searchParams.then((search) =>
 		getRecentForks({
