@@ -22,7 +22,7 @@ export default async function Home(props: PageProps<'/'>) {
 
 			<DaysSinceComponent forkDataPromise={forkDataPromise} />
 
-			<div className="fade-in mt-16 animate-in delay-500 duration-1000">
+			<div className=" mt-16 ">
 				<Suspense>
 					<RecentForks recentForksPromise={recentForksPromise} />
 				</Suspense>
