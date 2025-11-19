@@ -30,7 +30,7 @@ export async function RecentForks({
 	}
 
 	return (
-		<div className="z-10 w-full max-w-6xl px-4">
+		<div className="z-10 w-full max-w-6xl">
 			<div className="mb-6 flex items-center justify-center gap-2">
 				<GitFork className="h-5 w-5 text-amber-500/80" />
 				<h3 className="font-mono text-amber-500/80 text-lg uppercase tracking-wider">
@@ -38,7 +38,7 @@ export async function RecentForks({
 				</h3>
 			</div>
 
-			<div className="flex items-center gap-4">
+			<div className="flex items-center gap-2 md:gap-4">
 				<Link
 					className={cn(
 						buttonVariants({ variant: 'outline' }),
@@ -50,7 +50,7 @@ export async function RecentForks({
 					<ChevronLeft />
 				</Link>
 
-				<div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+				<div className="grid flex-1 grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-5">
 					{forks.map((fork, index) => (
 						<Link
 							className="group block transition-transform duration-200 hover:scale-105"
