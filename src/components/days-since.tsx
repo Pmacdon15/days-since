@@ -11,7 +11,7 @@ export default async function DaysSinceComponent({
 		<div className="fade-in zoom-in z-10 flex animate-in flex-col items-center gap-8 duration-1000">
 			<div className="relative">
 				<div className="-inset-4 absolute animate-pulse-slow rounded-full bg-red-500/20 blur-3xl" />
-				<h1 className="select-none bg-linear-to-b from-zinc-100 to-zinc-600 bg-clip-text pr-[0.2em] pb-[0.1em] font-black text-[12rem] text-transparent leading-none drop-shadow-2xl">
+				<h1 className="select-none bg-linear-to-b from-zinc-100 to-zinc-600 bg-clip-text pb-[0.1em] font-black text-[12rem] text-transparent leading-none drop-shadow-2xl">
 					{daysSince}
 				</h1>
 			</div>
