@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 	title: 'Days Since Last VS Code Fork',
 	description:
 		"A live counter of days since the last VS Code fork. (It's always 0)",
+		keywords: ['Days', 'since', 'last', 'vs code', 'fork'],
 }
 
 export default function RootLayout({
