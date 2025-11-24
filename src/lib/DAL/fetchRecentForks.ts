@@ -1,4 +1,4 @@
-import { cacheLife } from 'next/cache'
+import { cacheLife, cacheTag } from 'next/cache'
 import type { Fork, RecentForksResult } from '../types/types'
 
 const PER_PAGE = 5
@@ -8,8 +8,9 @@ export async function getRecentForks({
 }: {
 	page?: number | undefined
 }): Promise<RecentForksResult> {
-	'use cache: private'
-	cacheLife('hours')
+	'use cache'
+	cacheTag(`recent-forks-page-${page}`)
+	cacheLife({ stale: 150, revalidate: 60, expire: 300 })
 	try {
 		const response = await fetch(
 			`https://api.github.com/repos/microsoft/vscode/forks?sort=newest&per_page=${
