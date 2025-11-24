@@ -1,7 +1,7 @@
 import { cacheLife, cacheTag } from 'next/cache'
 import type { Fork, RecentForksResult } from '../types/types'
 
-const PER_PAGE = 5
+const PER_PAGE = 6
 
 export async function getRecentForks({
 	page = 1,
