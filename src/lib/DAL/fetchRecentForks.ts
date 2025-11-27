@@ -10,7 +10,7 @@ export async function getRecentForks({
 }): Promise<RecentForksResult> {
 	'use cache'
 	cacheTag(`recent-forks-page-${page}`)
-	cacheLife({ stale: 150, revalidate: 60, expire: 300 })
+	cacheLife('hours')
 	try {
 		const response = await fetch(
 			`https://api.github.com/repos/microsoft/vscode/forks?sort=newest&per_page=${

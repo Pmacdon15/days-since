@@ -3,7 +3,7 @@ import type { ForkData } from '../types/types'
 
 export async function getForkData(): Promise<ForkData> {
 	'use cache'
-	cacheLife({ expire: 300 })
+	cacheLife('hours')
 	try {
 		const response = await fetch(
 			'https://api.github.com/repos/microsoft/vscode/forks?sort=newest&per_page=1',
