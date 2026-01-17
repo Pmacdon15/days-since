@@ -22,7 +22,7 @@ export default async function Home(props: PageProps<'/'>) {
 
 			<DaysSinceComponent forkDataPromise={forkDataPromise} />
 
-			<div className=" mt-16 ">
+			<div className="mt-16">
 				<Suspense>
 					<RecentForks recentForksPromise={recentForksPromise} />
 				</Suspense>
