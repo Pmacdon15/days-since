@@ -1,4 +1,3 @@
-import { cacheLife } from 'next/cache'
 import { Suspense } from 'react'
 import DaysSinceComponent from '@/components/days-since'
 import { RecentForks } from '@/components/RecentForks'
@@ -6,7 +5,7 @@ import { getForkData } from '@/lib/DAL/fetchDaysSince'
 import { getRecentForks } from '@/lib/DAL/fetchRecentForks'
 
 export default async function Home(props: PageProps<'/'>) {
-	cacheLife("minutes")
+	
 	const forkDataPromise = getForkData()
 	const recentForksPromise = props.searchParams.then((search) =>
 		getRecentForks({
